@@ -18,7 +18,17 @@ test("Initial conditions", () => {
     expect(button).toBeEnabled()
 })
 test("On button click", () => {
+    render(<RollDice />)
+
     // button is disabled
+    const buttonDefault = screen.getByRole('button', {name: "Roll Dice!"})
+    userEvent.click(buttonDefault)
+    expect(buttonDefault).not.toBeEnabled()
+
     // button text changes
+    const buttonRolling = screen.getByRole('button', {name: 'Rolling ...'})
+    expect(buttonRolling).toBeInTheDocument()
+
     // dice rerender? Change?
+    // check if dice rerendered?
 })
