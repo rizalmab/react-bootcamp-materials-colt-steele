@@ -8,12 +8,19 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 
 const TodoApp = () => {
-  const initialTodos = [
+  let initialTodos = [
     { id: 1, task: "Clean Fishtank", completed: false },
-    { id: 2, task: "Clean House", completed: false },
+    { id: 2, task: "Clean House", completed: true },
     { id: 3, task: "Clean Room", completed: false },
   ];
   const [todos, setTodos] = useState(initialTodos);
+  const addTodo = (newTodoText) => {
+    setTodos([...todos, { id: 4, task: newTodoText, completed: false }]);
+  };
+  const removeTodo = (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
   return (
     <Paper
       style={{
@@ -29,8 +36,12 @@ const TodoApp = () => {
           <Typography color="inherit">TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
-      <TodoForm setTodos={setTodos} todos={todos} />
-      <TodoList todos={todos}></TodoList>
+      <Grid container justifyContent="center" style={{ marginTop: "1rem" }}>
+        <Grid item xs={11} md={8} lg={4}>
+          <TodoForm addTodo={addTodo} />
+          <TodoList todos={todos} removeTodo={removeTodo} />
+        </Grid>
+      </Grid>
     </Paper>
   );
 };
