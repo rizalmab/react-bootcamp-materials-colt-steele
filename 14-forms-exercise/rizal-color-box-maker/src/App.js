@@ -1,10 +1,10 @@
 import "./App.css";
-import ParentBox from "./ParentBox";
+import BoxList from "./BoxList";
 
 function App() {
   return (
     <div className="App">
-      <ParentBox />
+      <BoxList />
     </div>
   );
 }
